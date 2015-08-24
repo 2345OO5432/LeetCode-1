@@ -1,0 +1,32 @@
+/**
+    Created by paper on 15/8/5.
+
+    Delete Node in a Linked List 
+    https://leetcode.com/problems/delete-node-in-a-linked-list/
+
+    Write a function to delete a node (except the tail) in a singly linked list, 
+    given only access to that node.
+
+    Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, 
+    the linked list should become 1 -> 2 -> 4 after calling your function. 
+ */
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} node
+ * @return {void} Do not return anything, modify node in-place instead.
+ */
+
+// 其实这个题目是有点问题的。删除某个列表的值，应该从这个列表出发。
+// 如果使用这个 deleteNode 方法，将会彻底改变这个 node ，会影响其他引用它列表，带来不确定因素。
+// 这个题目可以说是为了技巧而编写的，而没有考虑真实的实际用途和代码规范 
+var deleteNode = function(node) {
+    node.val = node.next.val;
+    node.next = node.next.next;
+};
