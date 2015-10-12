@@ -99,7 +99,7 @@ var maxProfit = function(prices) {
     function sell() {
         switch(i) {
             case len: return 0;
-            case len - 1: return r[0];
+            case len - 1: return r[len - 1];
             case len - 2: 
                 return r[len-2] < r[len-1] ? r[len-1] : r[len-2];
         }
