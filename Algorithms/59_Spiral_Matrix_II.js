@@ -1,62 +1,60 @@
 /**
- * Created by paper on 2016/6/20.
+ * Created by paper on 2016/6/21.
  * 
- * Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+ * Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
  * 
  * For example,
- * Given the following matrix:
+ * Given n = 3,
  * 
+ * You should return the following matrix:
  * [
  *  [ 1, 2, 3 ],
- *  [ 4, 5, 6 ],
- *  [ 7, 8, 9 ]
+ *  [ 8, 9, 4 ],
+ *  [ 7, 6, 5 ]
  * ]
- * 
- * You should return [1,2,3,6,9,8,7,4,5].
  */
 
 /**
- * @param {number[][]} matrix
- * @return {number[]}
+ * @param {number} n
+ * @return {number[][]}
  */
-var spiralOrder = function(matrix) {
-
-    if( matrix.length === 0 ){
+var generateMatrix = function(n) {
+    if( n <= 0 ){
         return [];
     }
 
-    if( matrix.length === 1 ){
-        return matrix[0];
+    var matrix = [];
+
+    for(var i=0; i<n; i++){
+        matrix[i] = [];
     }
-
-    var x = 0;
-    var y = 0;
-
-    var ret = [];
 
     /**
      * 以左上角为坐标，向右是X轴，代表列
      * 向下是Y轴，代表行
      */
-    var X = matrix[0].length;
-    var Y = matrix.length;
-
     var XMIN = 0;
     var YMIN = 0;
 
-    var XMAX = X - 1;
-    var YMAX = Y - 1;
+    var XMAX = n - 1;
+    var YMAX = n - 1;
 
     var curDirection = 'right';
 
+    var x = 0;
+    var y = 0;
+    var v = 1;
+
+    var m = n*n;
+
     while(true){
 
-        if(  y < YMIN || y > YMAX ||
-            x < XMIN || x > XMAX ){
+        if( v > m ){
             break;
         }
 
-        ret.push( matrix[y][x] );
+        matrix[y][x] = v;
+        v++;
 
         switch (curDirection) {
             case 'right':
@@ -98,5 +96,5 @@ var spiralOrder = function(matrix) {
         }
     }//end while
 
-    return ret;
+    return matrix;
 };
