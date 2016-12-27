@@ -30,6 +30,7 @@ var hammingDistance = function(x, y) {
     return bitCount( x^y );
 
     // http://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html
+    // https://en.wikipedia.org/wiki/Hamming_distance
     function bitCount(num) {
         var c = 0;
 
