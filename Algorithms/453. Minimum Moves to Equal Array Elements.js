@@ -23,7 +23,10 @@
  * 
  * 这里详细说明一下：（主要使用数学方法解决这个问题）
  * 
- * 
+ * 先把问题简单化
+ * nums = [100, 1]，那么显然是需要99次，(100-1)
+ * nums = [100, 100, 1]，这就要想一想了。是 (100-1) * 2
+ * 依次类推，那么我们就先把nums进行排序，计算出前面相等时需要进行的步骤，记录下来。
  * 
  */
 
@@ -40,19 +43,16 @@ var minMoves = function(nums){
         return b - a;
     });
 
-    var cur = 0;
-    var curNum  = nums[cur];
+    var curNum  = nums[0];
 
     for(var i=1; i<len; i++) {
-        var nextNum = nums[i] + ret;
+        var nextNum = nums[i] + ret; // 右边的比较小的值，也是在加1的，别忘记了~
 
         if( nextNum < curNum ) {
-            var step = (cur+1) * ( curNum - nextNum );
-            ret += step;
-            curNum = nextNum + step;
+            var step = i * ( curNum - nextNum ); // 需要进行多少步骤
+            ret += step; // 记录下来
+            curNum = nextNum + step; // 等到最左边临时的最大值
         }
-
-        cur++;
     }
 
     return ret;
